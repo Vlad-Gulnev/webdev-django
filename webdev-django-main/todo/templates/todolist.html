@@ -1,0 +1,20 @@
+<h1>Список задач</h1>
+
+<form action="/addTodo/" method="post">
+    {% csrf_token %}
+    <input type="text" name="content">
+    <input type="submit" value="Добавить значение">
+</form>
+
+<ul>
+
+    {% for item in all_items %}
+        <li>
+            {{ item.content }}
+            <form action="/deleteTodoItem/{{ item.id }}/" method = "post">
+                {% csrf_token %}
+                <input type="submit" value="Delete">
+            </form> 
+        </li>
+    {% endfor %}
+</ul>
